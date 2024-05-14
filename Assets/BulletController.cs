@@ -13,8 +13,15 @@ public class BulletController : MonoBehaviour
         BulletPosition = transform.position;
     }
 
+    private void Update()
+    {
+        if(transform.position.y > 2000)
+        {
+            Destroy(gameObject);
+        }
+    }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.position =  BulletPosition + new Vector3(0, bullet_speed * Time.deltaTime, 0);
         BulletPosition = transform.position;

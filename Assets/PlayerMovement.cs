@@ -26,23 +26,23 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey("d")) { strafeRight = true; }
         else { strafeRight = false; }
 
-        if (rb.transform.position.y > 3)
+        if (rb.transform.position.y > 600)
         {
-            rb.transform.position = new Vector2(rb.transform.position.x, 3);
+            rb.transform.position = new Vector2(rb.transform.position.x, 600);
         }
 
-        if (rb.transform.position.y < -3.5)
+        if (rb.transform.position.y < -600)
         {
-            rb.transform.position = new Vector2(rb.transform.position.x, -3.5f);
+            rb.transform.position = new Vector2(rb.transform.position.x, -600);
         }
-        if (rb.transform.position.x > 3)
+        if (rb.transform.position.x > 260)
         {
-            rb.transform.position = new Vector2(3, rb.transform.position.y);
+            rb.transform.position = new Vector2(260, rb.transform.position.y);
         }
 
-        if (rb.transform.position.x < -3)
+        if (rb.transform.position.x < -260)
         {
-            rb.transform.position = new Vector2(-3, rb.transform.position.y);
+            rb.transform.position = new Vector2(-260, rb.transform.position.y);
         }
     }
     private void FixedUpdate()
