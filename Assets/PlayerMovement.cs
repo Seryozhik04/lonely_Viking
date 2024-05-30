@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public GameManager gm;
 
     public float strafeSpeed = 1;
 
@@ -11,9 +12,20 @@ public class PlayerMovement : MonoBehaviour
     protected bool strafeRight = false;
     protected bool strafeBack = false;
 
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "Enemy")
+        {
+            gm.EndGame();
+            Debug.Log("End game");
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        //// Фиксация нажатий клавиш перемещения
         if (Input.GetKey("w"))  { strafeForward = true; }
         else  { strafeForward = false; }
 
@@ -26,27 +38,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey("d")) { strafeRight = true; }
         else { strafeRight = false; }
 
-        if (rb.transform.position.y > 600)
-        {
-            rb.transform.position = new Vector2(rb.transform.position.x, 600);
-        }
 
-        if (rb.transform.position.y < -600)
-        {
-            rb.transform.position = new Vector2(rb.transform.position.x, -600);
-        }
-        if (rb.transform.position.x > 260)
-        {
-            rb.transform.position = new Vector2(260, rb.transform.position.y);
-        }
-
-        if (rb.transform.position.x < -260)
-        {
-            rb.transform.position = new Vector2(-260, rb.transform.position.y);
-        }
+       
     }
     private void FixedUpdate()
     {
+        // Перемещение
         if (strafeForward) 
         {
             rb.AddForce(transform.up * strafeSpeed, ForceMode2D.Impulse);
@@ -62,6 +59,24 @@ public class PlayerMovement : MonoBehaviour
         if (strafeRight)
         {
             rb.AddForce(transform.right * strafeSpeed, ForceMode2D.Impulse);
+        }
+
+        // Ограничение перемещения в пределах экрана
+        if (rb.transform.position.y > 600)
+        {
+            rb.transform.position = new Vector2(rb.transform.position.x, 600);
+        }
+        if (rb.transform.position.y < -600)
+        {
+            rb.transform.position = new Vector2(rb.transform.position.x, -600);
+        }
+        if (rb.transform.position.x > 260)
+        {
+            rb.transform.position = new Vector2(260, rb.transform.position.y);
+        }
+        if (rb.transform.position.x < -260)
+        {
+            rb.transform.position = new Vector2(-260, rb.transform.position.y);
         }
     }
 }
