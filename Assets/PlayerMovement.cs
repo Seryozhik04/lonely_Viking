@@ -4,6 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
     public GameManager gm;
+    public Joystick joystick;
 
     public float strafeSpeed = 1;
 
@@ -11,9 +12,20 @@ public class PlayerMovement : MonoBehaviour
     protected bool strafeLeft = false;
     protected bool strafeRight = false;
     protected bool strafeBack = false;
+    protected Vector3 wp1;
+    protected Vector3 wp2;
+    protected Vector3 wp3;
+    //protected Camera mainCamera = Camera.mainж
+    private void Start()
+    {
 
 
-    private void OnCollisionEnter(Collision collision)
+    wp1 = Camera.main.ScreenToWorldPoint(new Vector3(0f, Screen.height, 0f)); // 0,1,0 // left-top
+    wp2 = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0f)); // 1,1,0 // right-bottom
+    wp3 = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
+        Debug.Log(wp1.x + "\t" + wp1.y + "\n" + wp2.x + "\t" + wp2.y);
+    }
+private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == "Enemy")
         {
@@ -25,17 +37,20 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float verticalMove = joystick.Vertical;
+        float horizontalMove = joystick.Horizontal;
+
         //// Фиксация нажатий клавиш перемещения
-        if (Input.GetKey("w"))  { strafeForward = true; }
+        if (verticalMove > 0)  { strafeForward = true; }
         else  { strafeForward = false; }
 
-        if (Input.GetKey("s")) {  strafeBack = true; }
+        if (verticalMove < 0) {  strafeBack = true; }
         else { strafeBack = false; }
 
-        if (Input.GetKey("a")) { strafeLeft = true; }
+        if (horizontalMove < 0) { strafeLeft = true; }
         else { strafeLeft = false; }
 
-        if (Input.GetKey("d")) { strafeRight = true; }
+        if (horizontalMove > 0) { strafeRight = true; }
         else { strafeRight = false; }
 
 
@@ -62,21 +77,25 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Ограничение перемещения в пределах экрана
-        if (rb.transform.position.y > 600)
+        if (rb.transform.position.y > wp1.y - 40)
         {
-            rb.transform.position = new Vector2(rb.transform.position.x, 600);
+            Debug.Log("Верхний край = " + wp1.y);
+            rb.transform.position = new Vector2(rb.transform.position.x, wp1.y - 40);
         }
-        if (rb.transform.position.y < -600)
+        if (rb.transform.position.y < wp3.y + 20)
         {
-            rb.transform.position = new Vector2(rb.transform.position.x, -600);
+            Debug.Log("Нижний край = " + wp3.y);
+            rb.transform.position = new Vector2(rb.transform.position.x, wp3.y + 20);
         }
-        if (rb.transform.position.x > 260)
+        if (rb.transform.position.x > wp2.x - 40)
         {
-            rb.transform.position = new Vector2(260, rb.transform.position.y);
+            Debug.Log("Правый край = " + wp2.x);
+            rb.transform.position = new Vector2(wp2.x - 40, rb.transform.position.y);
         }
-        if (rb.transform.position.x < -260)
+        if (rb.transform.position.x < wp1.x + 40)
         {
-            rb.transform.position = new Vector2(-260, rb.transform.position.y);
+            Debug.Log("Левый край = " + wp1.x);
+            rb.transform.position = new Vector2(wp1.x + 40, rb.transform.position.y);
         }
     }
 }
