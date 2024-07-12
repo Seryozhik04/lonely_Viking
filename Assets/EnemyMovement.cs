@@ -3,7 +3,10 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     private Transform player;
+
+    public GameObject Enemy;
     public float moveSpeed;
+    private GameObject enemySpawner;
 
     private void Start()
     {
@@ -18,5 +21,15 @@ public class EnemyMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle+90)); // Поворот врага к игроку
 
         transform.position = Vector2.MoveTowards(transform.position, player.position, Time.deltaTime * moveSpeed); // Движение врага к игроку
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Projectile")
+        {
+            enemySpawner = GameObject.Find("EnemySpawner");
+            Destroy(Enemy);
+            enemySpawner.GetComponent<EnemySpawn>().Spawn();
+        }
+
     }
 }

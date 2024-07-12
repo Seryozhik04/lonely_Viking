@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5766796572506484642}
   - component: {fileID: 1145561672743918304}
   - component: {fileID: 9065336564747218033}
-  - component: {fileID: 8875012685119022604}
+  - component: {fileID: 4057881288032441457}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Enemy
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dcfe02188a2ec74eb70d504a95db6a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Enemy: {fileID: 1855765358253256775}
   moveSpeed: 400
 --- !u!50 &9065336564747218033
 Rigidbody2D:
@@ -119,7 +120,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -127,7 +128,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!70 &8875012685119022604
+--- !u!70 &4057881288032441457
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

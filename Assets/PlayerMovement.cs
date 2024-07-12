@@ -23,11 +23,11 @@ public class PlayerMovement : MonoBehaviour
     wp1 = Camera.main.ScreenToWorldPoint(new Vector3(0f, Screen.height, 0f)); // 0,1,0 // left-top
     wp2 = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0f)); // 1,1,0 // right-bottom
     wp3 = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
-        Debug.Log(wp1.x + "\t" + wp1.y + "\n" + wp2.x + "\t" + wp2.y);
+        //Debug.Log(wp1.x + "\t" + wp1.y + "\n" + wp2.x + "\t" + wp2.y);
     }
-private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
             gm.EndGame();
             Debug.Log("End game");
@@ -79,22 +79,22 @@ private void OnCollisionEnter(Collision collision)
         // Ограничение перемещения в пределах экрана
         if (rb.transform.position.y > wp1.y - 40)
         {
-            Debug.Log("Верхний край = " + wp1.y);
+            //Debug.Log("Верхний край = " + wp1.y);
             rb.transform.position = new Vector2(rb.transform.position.x, wp1.y - 40);
         }
         if (rb.transform.position.y < wp3.y + 20)
         {
-            Debug.Log("Нижний край = " + wp3.y);
+            //Debug.Log("Нижний край = " + wp3.y);
             rb.transform.position = new Vector2(rb.transform.position.x, wp3.y + 20);
         }
         if (rb.transform.position.x > wp2.x - 40)
         {
-            Debug.Log("Правый край = " + wp2.x);
+            //Debug.Log("Правый край = " + wp2.x);
             rb.transform.position = new Vector2(wp2.x - 40, rb.transform.position.y);
         }
         if (rb.transform.position.x < wp1.x + 40)
         {
-            Debug.Log("Левый край = " + wp1.x);
+            //Debug.Log("Левый край = " + wp1.x);
             rb.transform.position = new Vector2(wp1.x + 40, rb.transform.position.y);
         }
     }
