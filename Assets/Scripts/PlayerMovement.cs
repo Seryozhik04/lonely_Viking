@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public GameManager gm;
     public Joystick joystick;
+    
 
     public float strafeSpeed = 1;
 
@@ -29,8 +30,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            gm.EndGame();
-            Debug.Log("End game");
+            gm.Conflict(false);
         }
     }
 
