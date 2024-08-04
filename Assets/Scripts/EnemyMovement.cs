@@ -6,7 +6,6 @@ public class EnemyMovement : MonoBehaviour
 
     public GameObject Enemy;
     public float moveSpeed;
-    private GameObject enemySpawner;
 
     private void Start()
     {
@@ -26,9 +25,9 @@ public class EnemyMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Projectile")
         {
-            enemySpawner = GameObject.Find("EnemySpawner");
+            GameObject.Find("EnemySpawner").GetComponent<EnemySpawn>().Spawn(); 
             Destroy(Enemy);
-            enemySpawner.GetComponent<EnemySpawn>().Spawn();
+            GameObject.Find("Score").GetComponent<Score>().Kill();
         }
 
     }
