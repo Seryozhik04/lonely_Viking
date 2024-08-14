@@ -19,10 +19,10 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.HasKey("SavedScore"))
         {
             recordScore = PlayerPrefs.GetInt("SavedScore");
-
         }
         else recordScore = 0;
         GameObject.Find("RecordScore").GetComponent<Text>().text = "Record Score: " + recordScore;
+        Time.timeScale = 1f;
     }
     public void EndGame()
     {
