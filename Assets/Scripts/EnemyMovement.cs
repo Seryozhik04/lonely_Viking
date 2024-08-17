@@ -25,8 +25,8 @@ public class EnemyMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Projectile")
         {
-            GameObject.Find("EnemySpawner").GetComponent<EnemySpawn>().Spawn(); 
             Destroy(Enemy);
+            GameObject.Find("EnemySpawner").GetComponent<EnemySpawn>().Spawn(); 
             GameObject.Find("Score").GetComponent<Score>().Kill();
         }
 

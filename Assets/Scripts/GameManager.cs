@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        //PlayerPrefs.SetInt("SavedScore", 0);
+        //PlayerPrefs.Save();
+
         if (PlayerPrefs.HasKey("SavedScore"))
         {
             recordScore = PlayerPrefs.GetInt("SavedScore");

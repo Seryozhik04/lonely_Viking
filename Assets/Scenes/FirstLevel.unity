@@ -1047,8 +1047,9 @@ GameObject:
   m_Component:
   - component: {fileID: 948906062}
   - component: {fileID: 948906063}
+  - component: {fileID: 948906064}
   m_Layer: 0
-  m_Name: Gun
+  m_Name: RightGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1082,6 +1083,90 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1141498215}
+  Bullet: {fileID: 3545200638514984928, guid: 0201ded88f9cf3d47bc965fca3e8b326, type: 3}
+  gunPosition: 2
+  Period: 0.5
+--- !u!114 &948906064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948906061}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558fd502e87171645af87f5c9e1e34ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullet: {fileID: 3545200638514984928, guid: 0201ded88f9cf3d47bc965fca3e8b326, type: 3}
+  BulletPosition: {fileID: 948906062}
+  Period: 0.5
+  timerFire: 0
+--- !u!1 &1003961939
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1003961940}
+  - component: {fileID: 1003961941}
+  - component: {fileID: 1003961942}
+  m_Layer: 0
+  m_Name: LeftGun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1003961940
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003961939}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.5, y: 0.4213739, z: 3.443738}
+  m_LocalScale: {x: 0.0068751685, y: 0.008599468, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1141498219}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1003961941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003961939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea82add0a4fae6489b4f09e53e396e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 1141498215}
+  Bullet: {fileID: 3545200638514984928, guid: 0201ded88f9cf3d47bc965fca3e8b326, type: 3}
+  gunPosition: 0
+  Period: 0.5
+--- !u!114 &1003961942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003961939}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558fd502e87171645af87f5c9e1e34ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullet: {fileID: 3545200638514984928, guid: 0201ded88f9cf3d47bc965fca3e8b326, type: 3}
+  BulletPosition: {fileID: 1003961940}
+  Period: 0.5
+  timerFire: 0
 --- !u!1 &1050670031
 GameObject:
   m_ObjectHideFlags: 0
@@ -1306,7 +1391,6 @@ GameObject:
   - component: {fileID: 1141498218}
   - component: {fileID: 1141498217}
   - component: {fileID: 1141498216}
-  - component: {fileID: 1141498220}
   - component: {fileID: 1141498221}
   m_Layer: 0
   m_Name: Player
@@ -1423,25 +1507,10 @@ Transform:
   m_LocalScale: {x: 71.27099, y: 52.207058, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1003961940}
   - {fileID: 948906062}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1141498220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1141498215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 558fd502e87171645af87f5c9e1e34ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 1141498215}
-  Bullet: {fileID: 3545200638514984928, guid: 0201ded88f9cf3d47bc965fca3e8b326, type: 3}
-  BulletPosition: {fileID: 948906062}
-  Period: 0.3
 --- !u!70 &1141498221
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
