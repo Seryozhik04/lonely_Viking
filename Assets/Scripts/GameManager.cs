@@ -2,6 +2,7 @@ using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Threading.Tasks;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class GameManager : MonoBehaviour
     {
         //PlayerPrefs.SetInt("SavedScore", 0);
         //PlayerPrefs.Save();
+        if (PlayerPrefs.HasKey("enemy2SpawnDistance"))
+        {
+            PlayerPrefs.DeleteKey("enemy2SpawnDistance");
+        }
+        PlayerPrefs.Save();
 
         if (PlayerPrefs.HasKey("SavedScore"))
         {
@@ -59,5 +65,15 @@ public class GameManager : MonoBehaviour
     void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public async void EndGame(bool end)
+    {
+        //movement.enabled = false;
+        Time.timeScale = 0f;
+        GameObject.Find("ReverseReport").transform.position = Camera.main.transform.position + new Vector3(0, 0, 1);
+        GameObject.Find("ReverseReport").GetComponent<Text>().text = "You\n Win!";
+        GameObject.Find("ReverseReport").GetComponent<Text>().fontSize = 50;
+        await Task.Delay(5000);
+        SceneManager.LoadScene("MainMenu");
     }
 }
